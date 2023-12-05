@@ -116,18 +116,6 @@ require_once("../db.php");
                     <input type="email" class="form-control input-lg" id="email" placeholder="Email" value="<?php echo $row['email']; ?>" readonly>
                   </div>
                   <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea id="address" name="address" class="form-control input-lg" rows="5" placeholder="Address"><?php echo $row['address']; ?></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="city">City</label>
-                    <input type="text" class="form-control input-lg" id="city" name="city" onkeypress="return validateName(event);" value="<?php echo $row['city']; ?>" placeholder="city">
-                  </div>
-                  <div class="form-group">
-                    <label for="state">State</label>
-                    <input type="text" class="form-control input-lg" id="state" name="state"  placeholder="state" onkeypress="return validateName(event);" value="<?php echo $row['state']; ?>">
-                  </div>
-                  <div class="form-group">
                     <button type="submit" class="btn btn-flat btn-success">Update Profile</button>
                   </div>
                 </div>

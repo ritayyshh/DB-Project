@@ -165,15 +165,6 @@ if(isset($_SESSION['id_user']) || isset($_SESSION['id_company'])) {
                 <input class="form-control input-lg" type="text" id="contactno" name="contactno" minlength="10" maxlength="10" onkeypress="return validatePhone(event);" placeholder="Phone Number">
               </div>
               <div class="form-group">
-                <textarea class="form-control input-lg" rows="4" id="address" name="address" placeholder="Address"></textarea>
-              </div>
-              <div class="form-group">
-                <input class="form-control input-lg" type="text" id="city" name="city" placeholder="City">
-              </div>
-              <div class="form-group">
-                <input class="form-control input-lg" type="text" id="state" name="state" placeholder="State">
-              </div>
-              <div class="form-group">
                 <textarea class="form-control input-lg" rows="4" id="skills" name="skills" placeholder="Enter Skills"></textarea>
               </div>              
               <div class="form-group">
