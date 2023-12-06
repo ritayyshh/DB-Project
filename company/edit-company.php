@@ -127,7 +127,7 @@ require_once("../db.php");
                   <div class="form-group">
                     <label for="contactno">Contact Number</label>
                     <input type="text" class="form-control input-lg" id="contactno" name="contactno" placeholder="Contact Number" onkeypress="return validatePhone(event);" minlength="10" maxlength="10" value="<?php echo $row['contactno']; ?>">
-                  </div>
+                  <!-- </div>
                   <div class="form-group">
                     <label for="city">City</label>
                     <input type="text" class="form-control input-lg" id="city" name="city"
@@ -136,7 +136,7 @@ require_once("../db.php");
                   <div class="form-group">
                     <label for="state">State</label>
                     <input type="text" class="form-control input-lg" id="state" onkeypress="return validateName(event);" name="state" placeholder="state" value="<?php echo $row['state']; ?>">
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <label>Change Company Logo</label>
                     <input type="file" name="image" class="btn btn-default">

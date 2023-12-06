@@ -17,7 +17,7 @@ if(isset($_POST)) {
 		//output data
 		while($row = $result->fetch_assoc()) {
 
-			echo '<option value="'.$row["name"].'" data-id="'.$row["id"].'">'.$row["name"].'</option>';
+			echo '<option value="'.$row["id"].'" data-id="'.$row["id"].'">'.$row["name"].'</option>';
 
 			}
 			

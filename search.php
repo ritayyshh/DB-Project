@@ -16,13 +16,12 @@ $start_from = ($page-1) * $limit;
 
 
 if(isset($_GET['filter']) && $_GET['filter']=='city') {
-
-  $sql = "SELECT * FROM company WHERE city='$_GET[search]'";
-
-  $result = $conn->query($sql);
-  if($result->num_rows > 0) {
-    while($row1 = $result->fetch_assoc()) {
-      $sql1 = "SELECT * FROM job_post WHERE id_company>='$row1[id_company]' LIMIT $start_from, $limit";
+  $search = $_GET['search'];
+      $sql1 = "SELECT jp.*, co.*, c.* FROM job_post jp
+      JOIN company co ON jp.id_company = co.id_company
+      JOIN cities c ON co.id_city = c.id
+      WHERE c.name='$search'
+      LIMIT $start_from, $limit";
                 $result1 = $conn->query($sql1);
                 if($result1->num_rows > 0) {
                   while($row = $result1->fetch_assoc()) 
@@ -30,11 +29,11 @@ if(isset($_GET['filter']) && $_GET['filter']=='city') {
                ?>
 
          <div class="attachment-block clearfix">
-                <img class="attachment-img" src="uploads/logo/<?php echo $row1['logo']; ?>" alt="Attachment Image">
+                <img class="attachment-img" src="uploads/logo/<?php echo $row['logo']; ?>" alt="Attachment Image">
                 <div class="attachment-pushed">
                   <h4 class="attachment-heading"><a href="view-job-post.php?id=<?php echo $row['id_jobpost']; ?>"><?php echo $row['jobtitle']; ?></a> <span class="attachment-heading pull-right">$<?php echo $row['maximumsalary']; ?>/Month</span></h4>
                   <div class="attachment-text">
-                      <div><strong><?php echo $row1['companyname']; ?> | <?php echo $row1['city']; ?> | Experience <?php echo $row['experience']; ?> Years</strong></div>
+                      <div><strong><?php echo $row['companyname']; ?> | <?php echo $row['name']; ?> | Experience <?php echo $row['experience']; ?> Years</strong></div>
                   </div>
                 </div>
               </div>
@@ -43,10 +42,7 @@ if(isset($_GET['filter']) && $_GET['filter']=='city') {
         }
       }
     }
-  }
-
-
-} else {
+ else {
 
   if(isset($_GET['filter']) && $_GET['filter']=='searchBar') {
 
@@ -63,7 +59,7 @@ if(isset($_GET['filter']) && $_GET['filter']=='city') {
   $result = $conn->query($sql);
   if($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-      $sql1 = "SELECT * FROM company WHERE id_company='$row[id_company]'";
+      $sql1 = "SELECT * FROM company co JOIN cities c on co.id_city = c.id WHERE id_company='$row[id_company]'";
                 $result1 = $conn->query($sql1);
                 if($result1->num_rows > 0) {
                   while($row1 = $result1->fetch_assoc()) 
@@ -75,7 +71,7 @@ if(isset($_GET['filter']) && $_GET['filter']=='city') {
                 <div class="attachment-pushed">
                   <h4 class="attachment-heading"><a href="view-job-post.php?id=<?php echo $row['id_jobpost']; ?>"><?php echo $row['jobtitle']; ?></a> <span class="attachment-heading pull-right">$<?php echo $row['maximumsalary']; ?>/Month</span></h4>
                   <div class="attachment-text">
-                      <div><strong><?php echo $row1['companyname']; ?> | <?php echo $row1['city']; ?> | Experience <?php echo $row['experience']; ?> Years</strong></div>
+                      <div><strong><?php echo $row1['companyname']; ?> | <?php echo $row1['name']; ?> | Experience <?php echo $row['experience']; ?> Years</strong></div>
                   </div>
                 </div>
               </div>
