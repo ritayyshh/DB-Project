@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 03:38 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Dec 06, 2023 at 08:18 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -55,6 +55,13 @@ CREATE TABLE `apply_job_post` (
   `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `apply_job_post`
+--
+
+INSERT INTO `apply_job_post` (`id_apply`, `id_jobpost`, `id_company`, `id_user`, `status`) VALUES
+(27, 35, 19, 14, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -93,9 +100,6 @@ CREATE TABLE `company` (
   `id_company` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `companyname` varchar(255) NOT NULL,
-  `country` varchar(255) NOT NULL,
-  `state` varchar(255) NOT NULL,
-  `city` varchar(255) NOT NULL,
   `contactno` varchar(255) NOT NULL,
   `website` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -103,15 +107,18 @@ CREATE TABLE `company` (
   `aboutme` varchar(255) DEFAULT NULL,
   `logo` varchar(255) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
-  `active` int(11) NOT NULL DEFAULT 2
+  `active` int(11) NOT NULL DEFAULT 2,
+  `id_city` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`id_company`, `name`, `companyname`, `country`, `state`, `city`, `contactno`, `website`, `email`, `password`, `aboutme`, `logo`, `createdAt`, `active`) VALUES
-(19, 'Ritesh', 'KAISPE', 'Pakistan', 'Sind', 'Karachi', '1234567890', 'www.kaispe.com', 'kaispe@gmail.com', 'YjdlNDhmMTk4NjFhNDNjNGM2MDdhOGFlZTBiY2M3Mjg=', 'We work on Microsoft products.', '656d80904fdf1.png', '2023-12-04 07:32:32', 1);
+INSERT INTO `company` (`id_company`, `name`, `companyname`, `contactno`, `website`, `email`, `password`, `aboutme`, `logo`, `createdAt`, `active`, `id_city`) VALUES
+(19, 'Ritesh', 'KAISPE', '1234567890', 'www.kaispe.com', 'kaispe@gmail.com', 'YjdlNDhmMTk4NjFhNDNjNGM2MDdhOGFlZTBiY2M3Mjg=', 'We work on Microsoft products.', '656d80904fdf1.png', '2023-12-04 07:32:32', 1, 1),
+(21, 'Mr. ABC', 'ABC Company', '1234567890', 'www.abccompany.com', 'abccompany@gmail.com', 'YjdlNDhmMTk4NjFhNDNjNGM2MDdhOGFlZTBiY2M3Mjg=', 'work at ABC products.', '656ff6fbccf4b.png', '2023-12-06 04:22:19', 1, 1),
+(22, 'XYZ', 'XYZ', '0900786010', 'xyz.com', 'xyz@gmail.com', 'YjdlNDhmMTk4NjFhNDNjNGM2MDdhOGFlZTBiY2M3Mjg=', 'XYZ', '656ffc91d4f07.png', '2023-12-06 04:46:09', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -156,7 +163,8 @@ CREATE TABLE `job_post` (
 --
 
 INSERT INTO `job_post` (`id_jobpost`, `id_company`, `jobtitle`, `description`, `minimumsalary`, `maximumsalary`, `experience`, `qualification`, `createdat`) VALUES
-(35, 19, '.NET developer', '<p>work on MVC based application using C#.</p>', '80000', '100000', '3', 'bachelors degree in computing', '2023-12-04 07:34:48');
+(35, 19, '.NET developer', '<p>work on MVC based application using C#.</p>', '80000', '100000', '3', 'bachelors degree in computing', '2023-12-04 07:34:48'),
+(37, 21, 'ABC job', '<p>work on ABC products</p>', '1000', '2000', '1', 'bs', '2023-12-06 05:14:26');
 
 -- --------------------------------------------------------
 
@@ -213,7 +221,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `firstname`, `lastname`, `email`, `password`, `contactno`, `qualification`, `stream`, `passingyear`, `dob`, `age`, `designation`, `resume`, `hash`, `active`, `aboutme`, `skills`) VALUES
-(14, 'm', 'm', 'm@m.com', 'YjEwNTFhOWQ4ODkzNTQyMzYyYWQwOTA1MTc3NWY4ZjY=', '7419452194', 'BS', 'CS', '2019-08-23', '1999-01-14', '20', 'm', '5d4ebdd24a6ba.pdf', '2c21cb1adbf457fe8d0b54603c9a42e4', 1, 'm', 'm');
+(14, 'm', 'm', 'm@m.com', 'YjEwNTFhOWQ4ODkzNTQyMzYyYWQwOTA1MTc3NWY4ZjY=', '7419452194', 'BS', 'CS', '2019-08-23', '1999-01-14', '20', 'm', '65702044d209a.pdf', '2c21cb1adbf457fe8d0b54603c9a42e4', 1, 'm', 'm'),
+(15, 'Ritesh', 'Kumar', 'ritesh@gmail.com', 'YjdlNDhmMTk4NjFhNDNjNGM2MDdhOGFlZTBiY2M3Mjg=', '1234567890', 'BS', 'CS', '2025-01-06', '2004-05-11', '19', 'Student', '65701fb571a2c.pdf', '4bc050b6db306f9371d3b36ff290568d', 1, 'student at FAST NUCES, Karachi.', 'c++');
 
 --
 -- Indexes for dumped tables
@@ -242,7 +251,8 @@ ALTER TABLE `cities`
 --
 ALTER TABLE `company`
   ADD PRIMARY KEY (`id_company`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `fk_city` (`id_city`);
 
 --
 -- Indexes for table `countries`
@@ -283,7 +293,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `apply_job_post`
 --
 ALTER TABLE `apply_job_post`
-  MODIFY `id_apply` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_apply` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -295,7 +305,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `id_company` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_company` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -307,7 +317,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `job_post`
 --
 ALTER TABLE `job_post`
-  MODIFY `id_jobpost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_jobpost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `states`
@@ -319,7 +329,17 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `company`
+--
+ALTER TABLE `company`
+  ADD CONSTRAINT `fk_city` FOREIGN KEY (`id_city`) REFERENCES `cities` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

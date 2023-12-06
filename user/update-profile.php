@@ -17,9 +17,6 @@ if(isset($_POST)) {
 	//Escape Special Characters
 	$firstname = mysqli_real_escape_string($conn, $_POST['fname']);
 	$lastname = mysqli_real_escape_string($conn, $_POST['lname']);
-	$address = mysqli_real_escape_string($conn, $_POST['address']);
-	$city = mysqli_real_escape_string($conn, $_POST['city']);
-	$state = mysqli_real_escape_string($conn, $_POST['state']);
 	$contactno = mysqli_real_escape_string($conn, $_POST['contactno']);
 	$qualification = mysqli_real_escape_string($conn, $_POST['qualification']);
 	$stream = mysqli_real_escape_string($conn, $_POST['stream']);
@@ -66,7 +63,7 @@ if(isset($_POST)) {
 	
 
 	//Update User Details Query
-	$sql = "UPDATE users SET firstname='$firstname', lastname='$lastname', address='$address', city='$city', state='$state', contactno='$contactno', qualification='$qualification', stream='$stream', skills='$skills', aboutme='$aboutme'";
+	$sql = "UPDATE users SET firstname='$firstname', lastname='$lastname', contactno='$contactno', qualification='$qualification', stream='$stream', skills='$skills', aboutme='$aboutme'";
 
 	if($uploadOk == true) {
 		$sql .= ", resume='$file'";
