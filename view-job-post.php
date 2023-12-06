@@ -72,7 +72,8 @@ require_once("db.php");
 
   <?php
   
-    $sql = "SELECT * FROM job_post INNER JOIN company ON job_post.id_company=company.id_company WHERE id_jobpost='$_GET[id]'";
+    $sql = "SELECT * FROM job_post INNER JOIN company ON job_post.id_company=company.id_company JOIN cities ON company.id_city = cities.id
+      WHERE id_jobpost='$_GET[id]'";
     $result = $conn->query($sql);
     if($result->num_rows > 0) 
     {
@@ -93,7 +94,7 @@ require_once("db.php");
             <div class="clearfix"></div>
             <hr>
             <div>
-              <p><span class="margin-right-10"><i class="fa fa-location-arrow text-green"></i> <?php echo $row['city']; ?></span> <i class="fa fa-calendar text-green"></i> <?php echo date("d-M-Y", strtotime($row['createdat'])); ?></p>              
+              <p><span class="margin-right-10"><i class="fa fa-location-arrow text-green"></i> <?php echo $row['name']; ?></span> <i class="fa fa-calendar text-green"></i> <?php echo date("d-M-Y", strtotime($row['createdat'])); ?></p>              
             </div>
             <div>
               <?php echo stripcslashes($row['description']); ?>
@@ -112,13 +113,7 @@ require_once("db.php");
               <img src="uploads/logo/<?php echo $row['logo']; ?>" alt="companylogo">
               <div class="caption text-center">
                 <h3><?php echo $row['companyname']; ?></h3>
-                <p><a href="#" class="btn btn-primary btn-flat" role="button">More Info</a>
                 <hr>
-                <div class="row">
-                  <div class="col-md-4"><a href=""><i class="fa fa-address-card-o"></i> Apply</a></div>
-                  <div class="col-md-4"><a href=""><i class="fa fa-warning"></i> Report</a></div>
-                  <div class="col-md-4"><a href=""><i class="fa fa-envelope"></i> Email</a></div>
-                </div>
               </div>
             </div>
           </div>
