@@ -107,7 +107,10 @@ require_once("../db.php");
                     </thead>
                     <tbody>
                       <?php
-                      $sql = "SELECT * FROM company";
+                      $sql = "SELECT id_company, companyname, co.name name, email, contactno, c.name city, s.name state, cou.name country, active
+                        FROM company co JOIN cities c ON co.id_city =c.id 
+                        JOIN states s ON c.state_id=s.id
+                        JOIN countries cou ON s.country_id = cou.id";
                       $result = $conn->query($sql);
                       if($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
@@ -127,10 +130,6 @@ require_once("../db.php");
                           } else if($row['active'] == '2') {
                             ?>
                             <a href="reject-company.php?id=<?php echo $row['id_company']; ?>">Reject</a> <a href="approve-company.php?id=<?php echo $row['id_company']; ?>">Approve</a>
-                            <?php
-                          } else if ($row['active'] == '3') {
-                            ?>
-                              <a href="approve-company.php?id=<?php echo $row['id_company']; ?>">Reactivate</a>
                             <?php
                           } else if($row['active'] == '0') {
                             echo "Rejected";
