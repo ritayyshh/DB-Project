@@ -17,7 +17,7 @@ if(isset($_POST)) {
 	$password = base64_encode(strrev(md5($password)));
 
 	//sql query to check company login
-	$sql = "SELECT id_company, companyname, email FROM company WHERE email='$email' AND password='$password'";
+	$sql = "SELECT id_company, companyname, email, active FROM company WHERE email='$email' AND password='$password'";
 	$result = $conn->query($sql);
 
 	//if company table has this this login details
@@ -25,12 +25,24 @@ if(isset($_POST)) {
 		//output data
 		while($row = $result->fetch_assoc()) {
 
+			if($row['active'] == '2') {
+				$_SESSION['companyLoginError'] = "Your Account Is Still Pending Approval By Admin.";
+				header("Location: login-company.php");
+				exit();
+			} else if($row['active'] == '0') {
+				$_SESSION['companyLoginError'] = "Your Account Is Rejected. Please Contact Admin For More Info.";
+				header("Location: login-company.php");
+				exit();
+			} else if($row['active'] == '1') {
+				// active 1 means admin has approved account.
+				//Set some session variables for easy reference
 				$_SESSION['name'] = $row['companyname'];
 				$_SESSION['id_company'] = $row['id_company'];
 
 				//Redirect them to company dashboard once logged in successfully
 				header("Location: company/index.php");
 				exit();
+			}	
 		}
  	} else {
  		//if no matching record found in user table then redirect them back to login page

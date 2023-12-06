@@ -95,7 +95,7 @@ require_once("../db.php");
                   <div class="info-box-content">
                     <span class="info-box-text">Active Company Registered</span>
                     <?php
-                      $sql = "SELECT * FROM company";
+                      $sql = "SELECT * FROM company WHERE active='1'";
                       $result = $conn->query($sql);
                       if($result->num_rows > 0) {
                         $totalno = $result->num_rows;

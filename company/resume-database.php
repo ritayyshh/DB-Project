@@ -104,8 +104,6 @@ require_once("../db.php");
                       <th>Candidate</th>
                       <th>Highest Qualification</th>
                       <th>Skills</th>
-                      <th>City</th>
-                      <th>State</th>
                       <th>Download Resume</th>
                     </thead>
                     <tbody>
@@ -130,8 +128,6 @@ require_once("../db.php");
                           }
                           ?>
                         </td>
-                        <td><?php echo $row['city']; ?></td>
-                        <td><?php echo $row['state']; ?></td>
                         <td><a href="../uploads/resume/<?php echo $row['resume']; ?>" download="<?php echo $row['firstname'].' Resume'; ?>"><i class="fa fa-file-pdf-o"></i></a></td>
                       </tr>
 

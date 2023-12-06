@@ -126,9 +126,6 @@ if($result->num_rows == 0)
                 <div>
                   <?php
                     echo 'Email: '.$row['email'];
-                    echo '<br>';
-                    echo 'City: '.$row['city'];
-                    echo '<br>';
                     if($row['resume'] != "") {
                       echo '<a href="../uploads/resume/'.$row['resume'].'" class="btn btn-info" download="Resume">Download Resume</a>';
                     }

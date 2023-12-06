@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2023 at 09:06 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Dec 05, 2023 at 03:38 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -83,7 +83,6 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (9, 'Sialkot', 5),
 (10, 'Gujranwala', 5);
 
-
 -- --------------------------------------------------------
 
 --
@@ -133,6 +132,7 @@ CREATE TABLE `countries` (
 
 INSERT INTO `countries` (`id`, `sortname`, `name`, `phonecode`) VALUES
 (1, 'PK', 'Pakistan', 92);
+
 -- --------------------------------------------------------
 
 --
@@ -175,7 +175,6 @@ CREATE TABLE `states` (
 --
 
 INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
-
 (1, 'Balochistan', 1),
 (2, 'Federal Capital Area', 1),
 (3, 'KPK', 1),
@@ -195,9 +194,6 @@ CREATE TABLE `users` (
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `address` text DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `state` varchar(255) DEFAULT NULL,
   `contactno` varchar(255) DEFAULT NULL,
   `qualification` varchar(255) DEFAULT NULL,
   `stream` varchar(255) DEFAULT NULL,
@@ -216,8 +212,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `firstname`, `lastname`, `email`, `password`, `address`, `city`, `state`, `contactno`, `qualification`, `stream`, `passingyear`, `dob`, `age`, `designation`, `resume`, `hash`, `active`, `aboutme`, `skills`) VALUES
-(14, 'm', 'm', 'm@m.com', 'YjEwNTFhOWQ4ODkzNTQyMzYyYWQwOTA1MTc3NWY4ZjY=', 'm', 'm', 'm', '7419452194', 'BS', 'CS', '2019-08-23', '1999-01-14', '20', 'm', '5d4ebdd24a6ba.pdf', '2c21cb1adbf457fe8d0b54603c9a42e4', 1, 'm', 'm');
+INSERT INTO `users` (`id_user`, `firstname`, `lastname`, `email`, `password`, `contactno`, `qualification`, `stream`, `passingyear`, `dob`, `age`, `designation`, `resume`, `hash`, `active`, `aboutme`, `skills`) VALUES
+(14, 'm', 'm', 'm@m.com', 'YjEwNTFhOWQ4ODkzNTQyMzYyYWQwOTA1MTc3NWY4ZjY=', '7419452194', 'BS', 'CS', '2019-08-23', '1999-01-14', '20', 'm', '5d4ebdd24a6ba.pdf', '2c21cb1adbf457fe8d0b54603c9a42e4', 1, 'm', 'm');
 
 --
 -- Indexes for dumped tables
